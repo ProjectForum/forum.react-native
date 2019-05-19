@@ -29,7 +29,7 @@ class Loading extends React.Component<ILoadingProps> {
      */
     let Overlay: any = SpinnerOverlay;
     return (
-      <Overlay as any
+      <Overlay
         visible={this.props.visible}
         animation='fade'
         overlayColor={overlayColor}
