@@ -11,7 +11,7 @@
     "@types/react": "^16.8.14",
     "@types/react-native": "^0.57.50",
     "@types/react-native-vector-icons": "^6.4.0",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "mobx": "^5.9.4",
     "mobx-react": "^5.4.4",
     "native-base": "^2.12.1",
