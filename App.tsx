@@ -1,7 +1,15 @@
 import RoutesStack from './src/routes';
 import { createAppContainer } from 'react-navigation';
 import { bootstrap } from './src/utils';
+import { Root } from 'native-base';
+import * as React from 'react';
 
 bootstrap();
 
-export default createAppContainer(RoutesStack);
+const App = createAppContainer(RoutesStack);
+
+export default () => (
+    <Root>
+        <App />
+    </Root>
+);

@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+      "baseUrl": ".",
+      "paths": { "*": ["types/*"] },
       "importHelpers": true,
       "target": "es2018",
       "jsx": "react",

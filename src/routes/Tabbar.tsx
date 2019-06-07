@@ -1,8 +1,9 @@
-import React from 'react';
-import { createBottomTabNavigator, NavigationRoute, NavigationScreenProp } from 'react-navigation';
+import * as React from 'react';
+import { createBottomTabNavigator, NavigationRoute, NavigationScreenProp, NavigationScreenOptions } from 'react-navigation';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import HomeScreen from '../screens/home/HomeScreen';
 import UserScreen from '../screens/user/UserScreen';
+import { View, Text } from 'react-native';
 
 /**
  * 获取Tabbar的图标
@@ -32,8 +33,16 @@ export default createBottomTabNavigator(
     '我的': UserScreen,
   },
   {
-    navigationOptions: () => ({
-      headerTitle,
+    navigationOptions: (): NavigationScreenOptions => ({
+      headerLeft: (
+        <View>
+          <Text>{headerTitle}</Text>
+        </View>
+      ),
+      headerBackTitle: null,
+      headerStyle: {
+        borderBottomWidth: 0,
+      },
     }),
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ tintColor }) => getTabbarIcon(navigation, tintColor),
@@ -45,6 +54,9 @@ export default createBottomTabNavigator(
     tabBarOptions: {
       activeTintColor: '#f64e59',
       inactiveTintColor: '#cacaca',
+      style: {
+        borderTopColor: '#eee',
+      },
     },
   }
 )

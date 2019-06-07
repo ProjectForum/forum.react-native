@@ -1,22 +1,41 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, SafeAreaView } from 'react-native'
 import { NavigationScreenOptions, NavigationBottomTabScreenOptions } from 'react-navigation'
+import { AvatarImage, Loading } from '../../components';
 
-class TopicScreen extends React.Component {
-    static navigationOptions = ({ navigation, screenProps }): NavigationScreenOptions => {
-        return {
-            title: '主题',
-            tabBarVisible: false,
-        }
+interface IState {
+  loading: boolean;
+}
+
+class TopicScreen extends React.Component<{}, IState> {
+  static navigationOptions = ({ navigation, screenProps }): NavigationScreenOptions => {
+    return {
+      title: '帖子正文',
     }
-    render(): React.ReactNode {
-        return (
-            <View>
-                <Text>主题</Text>
-                <Button title="Dark" onPress={() => { }}></Button>
-            </View>
-        )
-    }
+  }
+
+  state = {
+    loading: true,
+  }
+
+  componentWillMount() {
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+      })
+    }, 2000)
+  }
+
+  render(): React.ReactNode {
+    return (
+      <SafeAreaView>
+        <Loading visible={this.state.loading} />
+        <View>
+          <Button title="Dark" onPress={() => { }}></Button>
+        </View>
+      </SafeAreaView>
+    )
+  }
 }
 
 export default TopicScreen
