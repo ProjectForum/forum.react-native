@@ -3,7 +3,32 @@ import { createBottomTabNavigator, NavigationRoute, NavigationScreenProp, Naviga
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import HomeScreen from '../screens/home/HomeScreen';
 import UserScreen from '../screens/user/UserScreen';
+import BoardListScreen from '../screens/home/BoardListScreen';
 import { View, Text } from 'react-native';
+
+interface IheaderTitleMap {
+  [key: string]: {
+    title: string;
+    icon: string;
+  };
+}
+
+let headerTitle = '时间线';
+let defaultHeaderTitle = headerTitle;
+let headerMap: IheaderTitleMap = {
+  Timeline: {
+    title: defaultHeaderTitle,
+    icon: 'bars',
+  },
+  BoardList: {
+    title: '板块',
+    icon: 'layout',
+  },
+  User: {
+    title: '我的',
+    icon: 'user',
+  },
+};
 
 /**
  * 获取Tabbar的图标
@@ -12,31 +37,22 @@ import { View, Text } from 'react-native';
  */
 const getTabbarIcon = (navigation: NavigationScreenProp<NavigationRoute>, tintColor: string) => {
   const { routeName } = navigation.state;
-  const iconMap = {
-    Home: 'home',
-    '首页': 'home',
-    '我的': 'user',
-  };
   return (
-    <AntIcon name={iconMap[routeName]} size={25} color={tintColor} />
+    <AntIcon name={headerMap[routeName].icon} size={25} color={tintColor} />
   )
 }
 
-let headerTitle = 'Home';
-
 export default createBottomTabNavigator(
   {
-    Home: {
-      screen: HomeScreen,
-    },
-    '首页': HomeScreen,
-    '我的': UserScreen,
+    Timeline: HomeScreen,
+    BoardList: BoardListScreen,
+    User: UserScreen,
   },
   {
     navigationOptions: (): NavigationScreenOptions => ({
       headerLeft: (
-        <View>
-          <Text>{headerTitle}</Text>
+        <View style={{ marginLeft: 20 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#323232' }}>{headerTitle}</Text>
         </View>
       ),
       headerBackTitle: null,
@@ -47,7 +63,7 @@ export default createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ tintColor }) => getTabbarIcon(navigation, tintColor),
       tabBarOnPress: ({ navigation, defaultHandler }) => {
-        headerTitle = navigation.state.routeName;
+        headerTitle = headerMap[navigation.state.routeName].title;
         defaultHandler();
       }
     }),

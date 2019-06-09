@@ -10,13 +10,7 @@ interface IProps { }
 class HomeScreen extends React.Component<NavigationScreenProps<IProps>> {
   static navigationOptions = ({ navigation, screenProps }): NavigationScreenOptions => {
     return {
-      title: '测试',
-      headerTitle: '123',
-      header: (
-        <View>
-          <Text></Text>
-        </View>
-      )
+      title: '时间线',
     }
   }
 
@@ -33,7 +27,16 @@ class HomeScreen extends React.Component<NavigationScreenProps<IProps>> {
       <Container>
         <FlatList
           refreshing={this.state.refreshing}
-          onRefresh={() => {}}
+          onRefresh={() => {
+            this.setState({
+              refreshing: true,
+            });
+            setTimeout(() => {
+              this.setState({
+                refreshing: false,
+              });
+            }, 1000);
+          }}
           data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           keyExtractor={(item) => item.toString()}
           renderItem={({ item, index }) => (

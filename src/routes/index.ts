@@ -8,15 +8,20 @@ import TestViewer from '../screens/forum/TestViewer';
 
 
 export default createStackNavigator({
+  'Forum/NewTopic': NewTopicScreen,
   Tab: {
     screen: Tabbar
   },
   'Forum/Test': TestViewer,
-  'Forum/NewTopic': NewTopicScreen,
   Topic: TopicScreen,
-  Home: HomeScreen,
   Login: LoginScreen,
 }, {
     headerMode: 'screen',
+    defaultNavigationOptions: () => ({
+      headerTintColor: '#323232',
+      headerStyle: {
+        borderBottomWidth: 0,
+      },
+    }),
   }
 );

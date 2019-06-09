@@ -807,6 +807,13 @@
   version "15.7.1"
   resolved "https://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
 
+"@types/react-native-keyboard-spacer@^0.4.1":
+  version "0.4.1"
+  resolved "http://r.cnpmjs.org/@types/react-native-keyboard-spacer/download/@types/react-native-keyboard-spacer-0.4.1.tgz#2bc5bf42df1c99ddd99bd5be0f0815df3f28e938"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
 "@types/react-native-loading-spinner-overlay@^0.5.1":
   version "0.5.1"
   resolved "http://r.cnpmjs.org/@types/react-native-loading-spinner-overlay/download/@types/react-native-loading-spinner-overlay-0.5.1.tgz#4dcbe9cc71763ea2b7e89533402734a70d6def59"
@@ -5077,9 +5084,17 @@ react-native-gesture-handler@^1.1.0:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
+react-native-image-crop-picker@^0.24.1:
+  version "0.24.1"
+  resolved "http://r.cnpmjs.org/react-native-image-crop-picker/download/react-native-image-crop-picker-0.24.1.tgz#4408e2bb20e3c082c0191e0acf0c8c7a1e9804ea"
+
 react-native-image-pan-zoom@^2.1.9:
   version "2.1.11"
   resolved "http://r.cnpmjs.org/react-native-image-pan-zoom/download/react-native-image-pan-zoom-2.1.11.tgz#61bcb69219d95e76a9797d23e4a2e8e0bd654ae9"
+
+react-native-image-picker@^0.28.1:
+  version "0.28.1"
+  resolved "http://r.cnpmjs.org/react-native-image-picker/download/react-native-image-picker-0.28.1.tgz#1127460522e0c9741fc62f3d040271d298fb6a6e"
 
 react-native-image-zoom-viewer@^2.2.26:
   version "2.2.26"
@@ -5097,6 +5112,10 @@ react-native-keyboard-aware-scroll-view@0.8.0:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
+
+react-native-keyboard-spacer@^0.4.1:
+  version "0.4.1"
+  resolved "http://r.cnpmjs.org/react-native-keyboard-spacer/download/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
 
 react-native-linear-gradient@^2.4.0:
   version "2.5.4"
