@@ -98,7 +98,6 @@ export class FastImageList extends React.Component<IFastImageListProps, IFastIma
         <Animatable.View
           ref={ref => animatableView = (ref as any)}
           style={[listStyles.image, { position: 'relative', backgroundColor: '#eee', }]}
-          useNativeDriver
         >
           <AnimatedFastImage
             style={[{ width: height, height, }]}

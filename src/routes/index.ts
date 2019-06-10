@@ -8,11 +8,11 @@ import TestViewer from '../screens/forum/TestViewer';
 
 
 export default createStackNavigator({
-  'Forum/NewTopic': NewTopicScreen,
   Tab: {
     screen: Tabbar
   },
   'Forum/Test': TestViewer,
+  'Forum/NewTopic': NewTopicScreen,
   Topic: TopicScreen,
   Login: LoginScreen,
 }, {

@@ -4,16 +4,19 @@ import AntIcon from 'react-native-vector-icons/AntDesign';
 import HomeScreen from '../screens/home/HomeScreen';
 import UserScreen from '../screens/user/UserScreen';
 import BoardListScreen from '../screens/home/BoardListScreen';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Button, Text } from 'native-base';
 
 interface IheaderTitleMap {
   [key: string]: {
     title: string;
     icon: string;
+    headerRight?: (navigation: NavigationScreenProp<NavigationRoute>) => React.ReactElement;
   };
 }
 
 let headerTitle = '时间线';
+let headerRight = null;
 let defaultHeaderTitle = headerTitle;
 let headerMap: IheaderTitleMap = {
   Timeline: {
@@ -23,6 +26,11 @@ let headerMap: IheaderTitleMap = {
   BoardList: {
     title: '板块',
     icon: 'layout',
+    headerRight: (navigation) => (
+      <Button transparent primary style={{ alignSelf: 'center' }} onPress={() => navigation.navigate('Forum/NewTopic')}>
+        <Text>发布新帖</Text>
+      </Button>
+    ),
   },
   User: {
     title: '我的',
@@ -55,6 +63,7 @@ export default createBottomTabNavigator(
           <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#323232' }}>{headerTitle}</Text>
         </View>
       ),
+      headerRight,
       headerBackTitle: null,
       headerStyle: {
         borderBottomWidth: 0,
@@ -64,6 +73,12 @@ export default createBottomTabNavigator(
       tabBarIcon: ({ tintColor }) => getTabbarIcon(navigation, tintColor),
       tabBarOnPress: ({ navigation, defaultHandler }) => {
         headerTitle = headerMap[navigation.state.routeName].title;
+        const headerRightGenerator = headerMap[navigation.state.routeName].headerRight;
+        if (headerRightGenerator) {
+          headerRight = headerRightGenerator(navigation);
+        } else {
+          headerRight = null;
+        }
         defaultHandler();
       }
     }),

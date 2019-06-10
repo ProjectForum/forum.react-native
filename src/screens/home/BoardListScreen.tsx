@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { View, Text, Button, SafeAreaView } from 'react-native'
-import { NavigationScreenOptions, NavigationBottomTabScreenOptions } from 'react-navigation'
-import { AvatarImage, Loading } from '../../components';
+import { View, SafeAreaView } from 'react-native'
+import { NavigationScreenOptions } from 'react-navigation'
 
 class BoardListScreen extends React.Component {
   static navigationOptions = ({ navigation, screenProps }): NavigationScreenOptions => {
@@ -14,7 +13,7 @@ class BoardListScreen extends React.Component {
     return (
       <SafeAreaView>
         <View>
-          <Button title="Dark" onPress={() => { }}></Button>
+          {/* <Button title="Dark" onPress={() => { }}></Button> */}
         </View>
       </SafeAreaView>
     )

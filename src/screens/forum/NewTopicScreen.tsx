@@ -1,31 +1,45 @@
 import * as React from 'react';
-import { View, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native'
-import { NavigationScreenOptions, ScrollView, SafeAreaView } from 'react-navigation'
+import { View, StyleSheet, TouchableOpacity, Image, Alert, Platform, Button as NativeButton, Keyboard } from 'react-native'
+import { NavigationScreenOptions, ScrollView, SafeAreaView, NavigationScreenProps } from 'react-navigation'
 import { TextInput, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Container, Icon, Text, Button, ActionSheet } from 'native-base';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import * as Animatable from 'react-native-animatable';
 import ImagePicker, { Image as PickerImage } from 'react-native-image-crop-picker';
-import { AnimatedFastImage, FastImageList } from '../../components';
+import { AnimatedFastImage, FastImageList, ImageViewer } from '../../components';
+import { IImageInfo } from 'react-native-image-zoom-viewer/built/image-viewer.type';
 
 interface IState {
   // 再弹起键盘时应该关闭安全区域显示
   safeAreaViewDisplay: boolean;
   images: string[];
-  test: string,
+  showImageViewer: boolean;
+  imageViewIndex: number;
 }
 
-class NewTopicScreen extends React.Component<{}, IState> {
+class NewTopicScreen extends React.Component<NavigationScreenProps<{}>, IState> {
   static navigationOptions = ({ navigation, screenProps }): NavigationScreenOptions => {
     return {
       title: '发表帖子',
+      headerRight: (
+        <Button transparent primary style={{ alignSelf: 'center', }} onPress={navigation.getParam('submit')}>
+          <Text>发布</Text>
+        </Button>
+      )
     }
+  }
+
+  componentWillMount() {
+    this.props.navigation.setParams({
+      submit: this.submit,
+    });
   }
 
   state: IState = {
     safeAreaViewDisplay: true,
     images: [],
-    test: '',
+    showImageViewer: false,
+    imageViewIndex: 0,
   }
 
   addImage(image: PickerImage) {
@@ -34,7 +48,6 @@ class NewTopicScreen extends React.Component<{}, IState> {
     this.setState({
       images,
     });
-    console.log(this.state)
   }
 
   /**
@@ -58,6 +71,7 @@ class NewTopicScreen extends React.Component<{}, IState> {
     const focusTextarea = () => {
       (this.refs.textarea as any).focus();
     };
+    Keyboard.dismiss();
     ActionSheet.show(
       {
         options: ['拍摄', '从相册选择', '取消'],
@@ -67,13 +81,13 @@ class NewTopicScreen extends React.Component<{}, IState> {
       (index) => {
         if (index === 0) {
           ImagePicker.openCamera({
-            width: 300,
-            height: 400,
+            // width: 300,
+            // height: 400,
             includeBase64: true,
           }).then((image) => {
             this.addImages(image);
           }).catch((e) => {
-
+            Alert.alert(e.message);
           }).finally(() => {
             focusTextarea();
           });
@@ -89,20 +103,42 @@ class NewTopicScreen extends React.Component<{}, IState> {
           }).finally(() => {
             focusTextarea();
           });
+        } else {
+          focusTextarea();
         }
       },
     );
   }
 
+  submit() {
+    Alert.alert('test');
+  }
+
   render(): React.ReactNode {
     return (
       <View style={{ flex: 1 }}>
+        <ImageViewer
+          visible={this.state.showImageViewer}
+          onCancel={() => this.setState({ showImageViewer: false, })}
+          index={this.state.imageViewIndex}
+          images={this.state.images.map((item): IImageInfo => ({
+            url: item,
+          }))}
+        />
         <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps='always'>
-          <TextInput ref='textarea' autoFocus style={styles.textarea} multiline={true} placeholder='说点什么吧...' />
+          <View style={{ minHeight: 120, }}>
+            <TextInput ref='textarea' autoFocus style={styles.textarea} multiline={true} placeholder='说点什么吧...' />
+          </View>
           <FastImageList
             style={{ marginHorizontal: 15, }}
             images={this.state.images}
             numColumns={3}
+            onItemPress={(info) => {
+              this.setState({
+                showImageViewer: true,
+                imageViewIndex: info.index,
+              });
+            }}
             subElement={(info, animatableView) => (
               // 删除按钮
               <View style={styles.imageRemoveBox}>
@@ -126,11 +162,13 @@ class NewTopicScreen extends React.Component<{}, IState> {
             </TouchableOpacity>
           </Container>
         </Animatable.View>
-        <KeyboardSpacer onToggle={(keyboardIsOpen) => {
-          this.setState({
-            safeAreaViewDisplay: !keyboardIsOpen,
-          });
-        }} />
+        {
+          Platform.OS === 'ios' ? <KeyboardSpacer onToggle={(keyboardIsOpen) => {
+            this.setState({
+              safeAreaViewDisplay: !keyboardIsOpen,
+            });
+          }} /> : null
+        }
         <SafeAreaView style={{ display: this.state.safeAreaViewDisplay ? 'flex' : 'none' }} />
       </View>
     )
@@ -164,7 +202,6 @@ const styles = StyleSheet.create({
   textarea: {
     padding: 16,
     fontSize: 16,
-    minHeight: 120,
   },
   footerShadow: {
     flexDirection: 'row',
@@ -186,6 +223,7 @@ const styles = StyleSheet.create({
     height: 50,
     flex: 0,
     paddingHorizontal: 14,
+    elevation: 10,
   },
   footerButton: {
     alignItems: 'center',
