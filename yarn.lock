@@ -2066,6 +2066,10 @@ cross-spawn@^6.0.0:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
+css-mediaquery@^0.1.2:
+  version "0.1.2"
+  resolved "http://r.cnpmjs.org/css-mediaquery/download/css-mediaquery-0.1.2.tgz#6a2c37344928618631c54bd33cedd301da18bea0"
+
 cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   version "0.3.6"
   resolved "https://registry.npm.taobao.org/cssom/download/cssom-0.3.6.tgz#f85206cee04efa841f3c5982a74ba96ab20d65ad"
@@ -4570,6 +4574,10 @@ object-keys@^1.0.12:
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/object-keys/download/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
 
+object-resolve-path@^1.1.0:
+  version "1.1.1"
+  resolved "http://r.cnpmjs.org/object-resolve-path/download/object-resolve-path-1.1.1.tgz#a7f8f93e8a20af80e44217ba7db54316d9d12232"
+
 object-visit@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/object-visit/download/object-visit-1.0.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fobject-visit%2Fdownload%2Fobject-visit-1.0.1.tgz#f79c4493af0c5377b59fe39d395e41042dd045bb"
@@ -5076,6 +5084,13 @@ react-native-easy-grid@0.2.1:
   dependencies:
     lodash "4.17.11"
 
+react-native-extended-stylesheet@^0.11.2:
+  version "0.11.2"
+  resolved "http://r.cnpmjs.org/react-native-extended-stylesheet/download/react-native-extended-stylesheet-0.11.2.tgz#4f7568f809623a2e9c186f464d7341f4ac13c806"
+  dependencies:
+    css-mediaquery "^0.1.2"
+    object-resolve-path "^1.1.0"
+
 react-native-fast-image@^6.0.3:
   version "6.0.3"
   resolved "http://r.cnpmjs.org/react-native-fast-image/download/react-native-fast-image-6.0.3.tgz#e644076c5e21dd8695db07905779352b2b9c1cb8"
@@ -5130,6 +5145,12 @@ react-native-loading-spinner-overlay@^1.0.1:
   resolved "http://r.cnpmjs.org/react-native-loading-spinner-overlay/download/react-native-loading-spinner-overlay-1.0.1.tgz#07f85a072b6f7d05b8749668cd626df4cc330347"
   dependencies:
     prop-types "^15.6.2"
+
+react-native-parsed-text@^0.0.21:
+  version "0.0.21"
+  resolved "http://r.cnpmjs.org/react-native-parsed-text/download/react-native-parsed-text-0.0.21.tgz#86cf233aedc7a848b801b674c81d6b5ee37162df"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-safe-area-view@^0.13.0:
   version "0.13.1"

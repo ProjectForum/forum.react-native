@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Thumbnail, Text, View, Button } from 'native-base';
 import { TouchableHighlight, StyleSheet, GestureResponderEvent } from 'react-native';
-import { AvatarImage } from '.';
+import { Author } from '.';
+import { Theme } from '../utils';
 
 export interface ITopicCardProps {
   onPress?: (event: GestureResponderEvent) => void;
@@ -17,25 +18,7 @@ class TopicCard extends React.PureComponent<ITopicCardProps> {
         <TouchableHighlight activeOpacity={0.96} onPress={this.props.onPress}>
           <View style={cardStyles.container}>
             {/* 用户 */}
-            <View style={cardStyles.authorBox}>
-              {/* 头像 */}
-              <View style={{ flexDirection: 'row' }}>
-                <AvatarImage
-                  size={35}
-                  source={faceUrl}
-                  style={{ alignSelf: 'center' }}
-                />
-              </View>
-              {/* 作者信息 */}
-              <View style={cardStyles.authorInfo}>
-                <View>
-                  <Text style={cardStyles.authorNameText}>璨测试</Text>
-                </View>
-                <View style={cardStyles.author}>
-                  <Text style={cardStyles.authorText}>发布于05-24</Text>
-                </View>
-              </View>
-            </View>
+            <Author faceUrl={faceUrl} name='璨测试' info='发布于 5-24' />
 
             {/* 帖子信息 */}
             <View style={cardStyles.topicBox}>
@@ -59,14 +42,14 @@ class TopicCard extends React.PureComponent<ITopicCardProps> {
   }
 }
 
-const cardStyles = StyleSheet.create({
+const cardStyles = Theme.createStyle({
   card: {
     display: 'flex',
-    backgroundColor: '#f1f1f1',
+    backgroundColor: '$cardGapColor',
     paddingBottom: 8,
   },
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '$backgroundColor',
     padding: 15,
   },
   authorBox: {
@@ -97,12 +80,12 @@ const cardStyles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 17,
     lineHeight: 23,
-    color: '#323232',
+    color: '$titleColor',
   },
   topicContentText: {
     fontSize: 14,
     lineHeight: 20,
-    color: '#323232',
+    color: '$titleColor',
   },
   infoContainer: {
     flexDirection: 'row',

@@ -8,6 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import ImagePicker, { Image as PickerImage } from 'react-native-image-crop-picker';
 import { AnimatedFastImage, FastImageList, ImageViewer } from '../../components';
 import { IImageInfo } from 'react-native-image-zoom-viewer/built/image-viewer.type';
+import { Theme } from '../../utils';
 
 interface IState {
   // 再弹起键盘时应该关闭安全区域显示
@@ -125,9 +126,23 @@ class NewTopicScreen extends React.Component<NavigationScreenProps<{}>, IState> 
             url: item,
           }))}
         />
-        <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps='always'>
+        <ScrollView style={styles.scrollView} keyboardShouldPersistTaps='always'>
+          <View>
+            <TextInput
+              autoFocus
+              style={styles.titleTextInput}
+              placeholder='帖子标题'
+              placeholderTextColor='#aaa'
+            />
+          </View>
           <View style={{ minHeight: 120, }}>
-            <TextInput ref='textarea' autoFocus style={styles.textarea} multiline={true} placeholder='说点什么吧...' />
+            <TextInput
+              ref='textarea'
+              style={styles.textarea}
+              multiline={true}
+              placeholder='说点什么吧...'
+              placeholderTextColor='#aaa'
+            />
           </View>
           <FastImageList
             style={{ marginHorizontal: 15, }}
@@ -175,9 +190,14 @@ class NewTopicScreen extends React.Component<NavigationScreenProps<{}>, IState> 
   }
 }
 
-const styles = StyleSheet.create({
+const styles = Theme.createStyle({
   container: {
     flexDirection: 'column',
+    flex: 1,
+    backgroundColor: '$backgroundColor',
+  },
+  scrollView: {
+    backgroundColor: '$backgroundColor',
     flex: 1,
   },
   imageContainer: {
@@ -199,9 +219,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#eee',
   },
+  titleTextInput: {
+    padding: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '$titleColor',
+  },
   textarea: {
     padding: 16,
     fontSize: 16,
+    color: '$titleColor',
   },
   footerShadow: {
     flexDirection: 'row',

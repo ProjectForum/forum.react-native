@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, SafeAreaView } from 'react-native'
 import { NavigationScreenOptions } from 'react-navigation'
+import { Theme } from '../../utils';
 
 class BoardListScreen extends React.Component {
   static navigationOptions = ({ navigation, screenProps }): NavigationScreenOptions => {
@@ -11,7 +12,7 @@ class BoardListScreen extends React.Component {
 
   render(): React.ReactNode {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         <View>
           {/* <Button title="Dark" onPress={() => { }}></Button> */}
         </View>
@@ -19,5 +20,12 @@ class BoardListScreen extends React.Component {
     )
   }
 }
+
+const styles = Theme.createStyle({
+  container: {
+    flex: 1,
+    backgroundColor: '$backgroundColor',
+  },
+});
 
 export default BoardListScreen

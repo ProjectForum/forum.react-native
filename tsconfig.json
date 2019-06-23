@@ -1,14 +1,17 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "paths": { "*": ["types/*"] },
-      "importHelpers": true,
-      "target": "es2018",
-      "jsx": "react",
-      "noEmit": true,
-      "moduleResolution": "node",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["types/*"]
     },
-    "exclude": [
-      "node_modules",
-    ],
-  }
+    "importHelpers": true,
+    "target": "es2018",
+    "jsx": "react",
+    "noEmit": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules",
+  ],
+}

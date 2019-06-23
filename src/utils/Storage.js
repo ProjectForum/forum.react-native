@@ -9,6 +9,11 @@ export function initStorage() {
   global.storage = new Storage({
     storageBackend: AsyncStorage,
     enableCache: true,
+    sync: {
+      'setting/theme'() {
+        return 'light';
+      }
+    },
   });
 }
 
