@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["types/*"]
+    },
+    "importHelpers": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["es6", "es2018.promise"],
+    "jsx": "react-native",
+    "noEmit": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
